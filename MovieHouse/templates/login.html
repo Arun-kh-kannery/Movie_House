@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="{% static 'css/a.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <title>Movie House</title>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+
+</head>
+<body  style="background-image:url({% static 'images/download.png' %});background-repeat:no-repeat;background-size:1600px 800px;">
+<div  class="container-1 " >
+    <div class="login">
+            <div data-aos="fade-down">
+        <div class="m-3" style="height:420px; width:400px;border:5px solid white;border-radius:10%; padding:20px;">
+            <h2 class="text-center text-danger"  style="font-family: 'Roboto Slab', serif;">Login</h2>
+            <form method="POST" onsubmit="return validate()">
+                {% csrf_token %}
+                <div class="mb-2">
+                    <label class="form-label">Username:</label>
+                    <input type="text" class="form-control" name="u" id="u1" placeholder="username">
+                    <p id="u2" class="ms-1"></p>
+                </div>
+                <div class="mb-2">
+                    <label  class="form-label">Password:</label>
+                    <input type="password" class="form-control" name="p" id="p1" placeholder="password">
+                    <p id="p2" class="ms-1"></p>
+                </div>
+                <div class="mb-2">
+                    <button type="submit" class="btn form-control btn-danger">submit</button>
+                </div>
+            </form>
+            <div class="mb-3">
+                {% if messages %}
+                <ul>
+                    {% for msg in messages %}
+                    <li style="color:red">{{msg}}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+            <div  class="mt-4 ms-3">
+                <h6>Dont have an account? <a href="{% url 'movie:register' %}" style="text-decoration:none;">Create Account</a></h6>
+            </div>
+        </div>
+    </div>
+        </div>
+</div>
+ <script>
+        function validate()
+        {
+        var u=document.getElementById('u1').value;
+        var p=document.getElementById('p1').value;
+        var count=0
+        if(u=="")
+        {
+        document.getElementById('u2').innerHTML="<b style='color:red'>Field is required </b>"
+        count++
+        }
+        if(p=="")
+        {
+        document.getElementById('p2').innerHTML="<b style='color:red'>Field is required </b>"
+        count++
+        }
+        else if(p.length<4)
+        {
+        document.getElementById('p2').innerHTML="<b style='color:red'>Password should be 4 characters </b>"
+        count++
+        }
+        if(count==0)
+        {
+        return true
+        }
+        else if(count>0)
+        {
+        return false
+        }
+        }
+    </script>
+</body>
+<script>
+  AOS.init();
+</script>
+</html>

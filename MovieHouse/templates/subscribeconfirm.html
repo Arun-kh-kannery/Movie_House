@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+{% if msg %}
+<div class="container mt-3" >
+    <h3 class="text-center text-success">{{msg}}</h3>
+    <h3 class="text-center text-danger">Thank you...</h3>
+    <p class="text-center"><a href="{% url 'movie:homeall' %}">return to home</a></p>
+</div>
+{% endif %}
+{% if a %}
+<div class="container mt-3" >
+    <h3 class="text-center text-success">{{a}}</h3>
+    <h3 class="text-center text-danger">Thank you...</h3>
+    <p class="text-center"><a href="{% url 'movie:homeall' %}">return to home</a></p>
+</div>
+{% endif %}
+{% endblock %}
